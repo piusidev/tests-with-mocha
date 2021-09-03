@@ -1,3 +1,4 @@
+const fs = require('fs');
 class Todos {
   constructor() {
     this.todos = [];
@@ -17,6 +18,10 @@ class Todos {
   }
 
   complete(title) {
+    if(this.todos.length === 0) {
+      throw new Error("You have no TODOs stored. Why don't you add one first?");
+    }
+
     let todoFound = false;
 
     this.todos.find((todo) => {
@@ -31,6 +36,16 @@ class Todos {
     if(!todoFound) {
       throw new Error(`No TODO was found with the title: "${title}"`)
     }
+  }
+
+  saveToFile(callback) {
+    let fileContents = "Title, Completed\n ";
+
+    this.todos.forEach((todo) => {
+      fileContents += `${todo.title}, ${todo.completed}\n `
+    });
+
+    fs.writeFile('todos.csv', fileContents, callback);
   }
 }
 
