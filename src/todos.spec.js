@@ -59,17 +59,14 @@ describe("complete()", () => {
 });
 
 describe("saveToFile()", () => {
-  it("should save a single todo", (done) => {
+  it("should save a single todo", async () => {
     let todos = new Todos;
-    
-    todos.add("s a CSV");
-    todos.saveToFile((err) => {
-      assert.strictEqual(fs.existsSync('todos.csv'), true);
+    todos.add("save a CSV");
+    await todos.saveToFile();
 
-      let expectedFileContents = "Title, Completed\nsave a CSV, false\n ";
-      let content = fs.readFileSync("todos.csv").toString();
-      assert.strictEqual(content, expectedFileContents);
-      done(err);
-    });
+    assert.strictEqual(fs.existsSync('todos.csv'), true);
+    let expectedFileContents = "Title, Completed\nsave a CSV, false\n";
+    let content = fs.readFileSync("todos.csv").toString();
+    assert.strictEqual(content, expectedFileContents);
   });
 });
