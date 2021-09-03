@@ -39,10 +39,10 @@ class Todos {
   }
 
   saveToFile(callback) {
-    let fileContents = "Title, Completed\n ";
+    let fileContents = "Title, Completed\n";
 
     this.todos.forEach((todo) => {
-      fileContents += `${todo.title}, ${todo.completed}\n `
+      fileContents += `${todo.title}, ${todo.completed}\n`
     });
 
     fs.writeFile('todos.csv', fileContents, callback);

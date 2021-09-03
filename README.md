@@ -25,3 +25,8 @@ The `deepStrictEqual()` function test if the objects have the same propertys.
 This method can verifify the errors emitted. We need pass two arguments to `throws()` function, the first is the function who emmit the error, and in next the expected error.
 
 ## Testing asynchronous code
+
+### `done`
+
+Using `done` as args of a function, we can test functions with callback. The `done()` callback is used by Mocha for finish a async function.
+
